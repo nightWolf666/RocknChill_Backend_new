@@ -11,7 +11,7 @@ app.use(express.static('.'));
 app.use('/images', express.static('images'));
 
 // app.set("views", './views');
-app.set("view engine", "pug");
+// app.set("view engine", "pug");
 
 console.log('Hi there')
 app.use(express.json());

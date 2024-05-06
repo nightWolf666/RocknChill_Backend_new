@@ -2,12 +2,12 @@
 import { pool } from '../db.js';
 
 export async function insertNewEvent(req, res) {
-  const { event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_link,event_bild } = req.body;
+  const { event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_link,event_bild,user_id } = req.body;
   console.log(req.body)
   try {
       const { rows: event } = await pool.query(
-          'INSERT INTO event (event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_link,event_bild) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
-          [event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_link,event_bild]
+          'INSERT INTO event (event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_link,event_bild, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
+          [event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_link,event_bild,user_id]
       );
       res.json(event);
   } catch (error) {

@@ -8,6 +8,6 @@ export const eventRouter = Router();
 
 
 eventRouter.route('/').post(insertNewEvent);
-eventRouter.route('/').get(getEvents);
+eventRouter.route('/user/:id').get(getEvents);
 eventRouter.route('/:id').get(getEvent).put(updateEvent);
 

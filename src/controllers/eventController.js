@@ -37,8 +37,10 @@ export async function updateEvent(req, res) {
   }
 
 export async function getEvents(req, res) {
+    const {id} = req.params;
   try {
-      const { rows: events } = await pool.query('SELECT * FROM event ');
+      const { rows: events } = await pool.query('SELECT * FROM event WHERE user_id = $1',
+        [id]);
       console.log("hi User", events);
       res.send(events);
   } catch (error) {

@@ -6,7 +6,7 @@ export async function insertNewUser(req, res) {
   console.log(req.body)
   try {
       const { rows: users } = await pool.query(
-          'INSERT INTO users (user_name,email,passwort,urlaubstage,budget,avatar_link) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+          'INSERT INTO users (user_name,email,passwort,urlaubstage,budget,avatar_link) VALUES ($1, $2, $3, $4, $5, $6) RETURNING user_id',
           [user_name,email,passwort,urlaubstage,budget,avatar_link]
       );
       res.json(users);

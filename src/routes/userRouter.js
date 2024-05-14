@@ -10,4 +10,5 @@ export const userRouter = Router();
 userRouter.route('/').post(insertNewUser);
 userRouter.route('/').get(getUsers);
 userRouter.route('/:id').get(getUser).put(updateUser);
+// userRouter.route('/:user_name').get(getUserByName);
 

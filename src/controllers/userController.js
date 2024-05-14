@@ -56,3 +56,42 @@ export async function getUser(req, res) {
         res.sendStatus(500);
     }
   }
+
+//   export async function getUserByName(req, res) {
+//     const {user_name} = req.params;
+//     try {
+//         const { rows: users } = await pool.query('SELECT * FROM users WHERE user_name = $1',
+//         [user_name]);
+//         console.log("hi User", users);
+//         res.send(users);
+//     } catch (error) {
+//         console.log(error);
+//         res.sendStatus(500);
+//     }
+//   }
+
+//   export async function getUserByEmail(req, res) {
+//     const {email} = req.params;
+//     try {
+//         const { rows: users } = await pool.query('SELECT * FROM users WHERE email = $1 RETURNING *',
+//         [email]);
+//         console.log("hi User", users);
+//         res.send(users);
+//     } catch (error) {
+//         console.log(error);
+//         res.sendStatus(500);
+//     }
+//   }
+
+//   export async function getUserByName(req, res) {
+//     const {user_name} = req.params;
+//     try {
+//         const { rows: users } = await pool.query('SELECT * FROM users WHERE email = $1 RETURNING *',
+//         [user_name]);
+//         console.log("hi User", users);
+//         res.send(users);
+//     } catch (error) {
+//         console.log(error);
+//         res.sendStatus(500);
+//     }
+//   }

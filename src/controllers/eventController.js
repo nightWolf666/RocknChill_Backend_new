@@ -65,7 +65,7 @@ export async function getEvent(req, res) {
   export async function deleteEvent(req, res) {
     const {id} = req.params;
     try {
-        const { rows: event } = await pool.query('DELETE FROM event WHERE event_id = $1',
+        const { rows: event } = await pool.query('DELETE FROM event WHERE event_id = $1 RETURNING *',
         [id]);
         console.log("hi User", event);
         res.send(event);

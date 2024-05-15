@@ -2,12 +2,12 @@
 import { pool } from '../db.js';
 
 export async function insertNewEvent(req, res) {
-  const { event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_link,event_bild,user_id } = req.body;
+  const { event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_dauer,event_link,event_bild,user_id } = req.body;
   console.log(req.body)
   try {
       const { rows: event } = await pool.query(
-          'INSERT INTO event (event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_link,event_bild, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
-          [event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_link,event_bild,user_id]
+          'INSERT INTO event (event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_dauer,event_link,event_bild, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 ) RETURNING *',
+          [event_name,event_ort,event_start,event_ende,event_beschreibung_kurz,event_beschreibung_lang,event_genre,event_dauer,event_link,event_bild,user_id]
       );
       res.json(event);
   } catch (error) {
@@ -53,6 +53,19 @@ export async function getEvent(req, res) {
     const {id} = req.params;
     try {
         const { rows: event } = await pool.query('SELECT * FROM event WHERE event_id = $1',
+        [id]);
+        console.log("hi User", event);
+        res.send(event);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+  }
+
+  export async function deleteEvent(req, res) {
+    const {id} = req.params;
+    try {
+        const { rows: event } = await pool.query('DELETE FROM event WHERE event_id = $1',
         [id]);
         console.log("hi User", event);
         res.send(event);
